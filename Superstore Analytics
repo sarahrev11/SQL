@@ -1,0 +1,26 @@
+-- Table sample;
+SELECT*
+FROM superstore
+LIMIT 3;
+
+-- Order items by price;
+SELECT item_name, price
+FROM superstore
+ORDER BY price;
+
+--Average price;
+SELECT AVG(price)
+FROM superstore;
+
+-- Least expensive item in 'Kitchen Supplies';
+SELECT MIN(price), item_name
+FROM superstore
+WHERE category='Kitchen Supplies'
+GROUP BY item_name
+ORDER BY item_name ASC
+LIMIT 1;
+
+--How many Premium Coffee Makers are in stock;
+SELECT stock_quantity
+FROM superstore
+WHERE item_name='Premium Coffee Maker';
