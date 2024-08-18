@@ -1,4 +1,4 @@
-This project utilized data from the following Netflix Dataset:
+# This project was written using PostgreSQL dialect and utilized data from the following Netflix Dataset:
 
 
 CREATE TABLE netflix_titles_info
@@ -59,25 +59,29 @@ VALUES
     ('s20', NULL, 'Blanca SuÃ¡rez| IvÃ¡n Marcos| Ã“scar Casas| AdriÃ¡n Lastra| Francesc Garrido| Stefan Weinert| Julia MÃ¶ller| Alicia Chojnowski')
     ;
 
+# The following SQL was written to answer specific questions about the content on Netflix:
 
 --How many movie titles are in the database?
 SELECT COUNT(*) FROM "netflix_titles_info" 
 WHERE type = 'Movie';
 
---most recent batch of tv shows/movies added to the database
+--When was the most recent batch of tv shows/movies added to the database?
 SELECT max(date(date_added))
 FROM "netflix_titles_info";
 
+--List all the movies and tv shows in alphabetical order.
 SELECT title
 FROM "netflix_titles_info"
 ORDER BY title asc;
 
+--Who was the director for the movie The Starling?
 SELECT director
 FROM "netflix_titles_info" AS titles
 LEFT JOIN "netflix_people" AS people
 ON titles.show_id = people.show_id
 WHERE title = 'The Starling';
 
+--What is the oldest movie in the database and what year was it made?
 SELECT title, release_year
 FROM "netflix_titles_info" 
 WHERE type = 'Movie'
